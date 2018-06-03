@@ -18,6 +18,8 @@ public class CursorWatcher : MonoBehaviour {
 		float relativeZPosition         = Mathf.Abs(Camera.main.transform.position.y - avatar.transform.position.y);
 		Vector3 convertedCursorPosition = new Vector3(cursor.x, cursor.y, relativeZPosition);
         Vector3 cursorWorldPosition     = Camera.main.ScreenToWorldPoint(convertedCursorPosition);
-        avatar.transform.LookAt(cursorWorldPosition);
+        Vector3 lookPosition            = new Vector3(cursorWorldPosition.x, avatar.transform.position.y, cursorWorldPosition.z);
+
+        avatar.transform.LookAt(lookPosition);
 	}
 }
