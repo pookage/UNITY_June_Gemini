@@ -14,9 +14,10 @@ public class CursorWatcher : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		Vector3 v3T = Input.mousePosition;
-        v3T.z = Mathf.Abs(Camera.main.transform.position.y - avatar.transform.position.y);
-        v3T = Camera.main.ScreenToWorldPoint(v3T);
-        avatar.transform.LookAt(v3T);
+		Vector3 cursor                  = Input.mousePosition;
+		float relativeZPosition         = Mathf.Abs(Camera.main.transform.position.y - avatar.transform.position.y);
+		Vector3 convertedCursorPosition = new Vector3(cursor.x, cursor.y, relativeZPosition);
+        Vector3 cursorWorldPosition     = Camera.main.ScreenToWorldPoint(convertedCursorPosition);
+        avatar.transform.LookAt(cursorWorldPosition);
 	}
 }
